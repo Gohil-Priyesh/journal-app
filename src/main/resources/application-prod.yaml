@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: myFirstProject
+
+  data:
+    mongodb:
+      uri: ${spring.data.mongodb.uri}
+      database: ${spring.data.mongodb.database}
+      auto-index-creation: true
+
+server:
+  port: ${server.port:8080} # fallback to 8080 if not set
+#  servlet:
+#    context-path: /journal-app
