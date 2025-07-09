@@ -15,8 +15,9 @@ import org.springframework.stereotype.Component;
 
 import com.priyesh.myFirstProject.entity.UserEntity;
 import com.priyesh.myFirstProject.repository.UserRepository;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 @Slf4j
 public class UserService {
 

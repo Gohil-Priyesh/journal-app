@@ -2,13 +2,48 @@ spring:
   application:
     name: myFirstProject
 
+  redis:
+    host: redis-16942.c212.ap-south-1-1.ec2.redns.redis-cloud.com
+    port: 16942
+    password: llNbcjJlVAM6C9Z59y9QaJa94WklN9QE # make sure to add @ at end if it is shown i password even though it is not hidden
+    ssl: true  # Redis Cloud requires SSL
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: priyeshgohil269@gmail.com
+    password: adznahmdibsiqtde
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
   data:
     mongodb:
-      uri: ${spring.data.mongodb.uri}
-      database: ${spring.data.mongodb.database}
+#      uri: ${spring.data.mongodb.uri}
+#      database: ${spring.data.mongodb.database}
+      uri: mongodb+srv://priyeshgohil269:priyeshgohil269@cluster0.pryhhng.mongodb.net/
+      database: journaldb
       auto-index-creation: true
 
+
+
 server:
-  port: ${server.port:8080} # fallback to 8080 if not set
+#  port: ${server.port:8080} # fallback to 8080 if not set
+  port: 8080 # fallback to 8080 if not set
 #  servlet:
 #    context-path: /journal-app
+
+weather:
+  api:
+    key: cdcedeb35f395334485a8612537abe14
+
+# this is also valid to store keys
+#weather_api_key: cdcedeb35f395334485a8612537abe14
+
+SECRET_KEY : TaK+HaV^uvCHEFsEVfypW#7g9^k*Z8$V
+
+logging:
+  level:
+    org.springframework.boot.context.config: DEBUG

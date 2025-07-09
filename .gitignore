@@ -35,5 +35,10 @@ build/
 ### my properties ###
 /target/
 .resources/templates/
-.env
 *.log
+.env
+application.yaml
+application-dev.yaml
+application-prod.yamlapplication.yaml
+application-dev.yaml
+application-prod.yaml

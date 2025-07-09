@@ -1,5 +1,6 @@
 package com.priyesh.myFirstProject.controller;
 
+import com.priyesh.myFirstProject.cache.AppCache;
 import com.priyesh.myFirstProject.entity.UserEntity;
 import com.priyesh.myFirstProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class AdminController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    AppCache appCache;
+
     @GetMapping("/all-users")
     public ResponseEntity<?> getAllUser() {
         List<UserEntity> all = userService.getAll();
@@ -28,5 +32,10 @@ public class AdminController {
     @PostMapping("/create-admin-user")
     public void createUserAdmin(@RequestBody UserEntity user){
         userService.saveAdmin(user);
+    }
+
+    @GetMapping("clear-ap-cache")
+    public void clearAppCache(){
+        appCache.init(); /// for clearing and reloading new data from mongoDB
     }
 }

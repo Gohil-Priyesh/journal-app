@@ -3,6 +3,7 @@ package com.priyesh.myFirstProject.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 @Document(collection = "users")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserEntity {
 
     @Id
@@ -25,6 +27,10 @@ public class UserEntity {
     @NonNull
     @Indexed(unique = true)
     private String userName;
+
+    private String email;
+
+    private boolean sentimentAnalysis;
 
     @NonNull
     private String password;
