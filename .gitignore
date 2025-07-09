@@ -42,3 +42,6 @@ application-dev.yaml
 application-prod.yamlapplication.yaml
 application-dev.yaml
 application-prod.yaml
+src/main/resources/application.yaml 
+src/main/resources/application-dev.yaml 
+src/main/resources/application-prod.yaml 
