@@ -2,6 +2,7 @@ package com.priyesh.myFirstProject.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -13,11 +14,13 @@ public class EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
+    @Value("${setFromEmail}") String setFromEmail;
+
     public void sendEmail(String to, String subject, String body){
         try{
             SimpleMailMessage mail = new SimpleMailMessage();
             ///  setting to , subject and mail in the mail object of SimpleMailMessage
-            mail.setFrom("priyeshgohil269@gmail.com");
+            mail.setFrom(setFromEmail);
             mail.setTo(to);
             mail.setSubject(subject);
             mail.setText(body);

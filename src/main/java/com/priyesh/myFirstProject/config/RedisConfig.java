@@ -1,8 +1,10 @@
 package com.priyesh.myFirstProject.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.RedisPassword;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -12,6 +14,8 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 /// the spring boot serializer and deserializer are the same  
 @Configuration
 public class RedisConfig {
+
+//    @Value("{spring.}")
 
     @Bean
     public RedisTemplate redisTemplate(RedisConnectionFactory factory){
@@ -25,11 +29,20 @@ public class RedisConfig {
     }
 
     @Bean
-    public LettuceConnectionFactory redisConnectionFactory() {
+    public LettuceConnectionFactory redisConnectionFactory(RedisStandaloneConfiguration configuration) {
+        return new LettuceConnectionFactory(configuration);
+    }
+
+    @Bean
+    public RedisStandaloneConfiguration redisStandaloneConfiguration(
+            @Value("${spring.redis.host}") String host,
+            @Value("${spring.redis.port}") int port,
+            @Value("${spring.redis.password}") String password,
+            @Value("${spring.redis.ssl}") boolean ssl) {
         RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
-        config.setHostName("redis-16942.c212.ap-south-1-1.ec2.redns.redis-cloud.com");
-        config.setPort(16942);
-        config.setPassword("llNbcjJlVAM6C9Z59y9QaJa94WklN9QE");
-        return new LettuceConnectionFactory(config);
+        config.setHostName(host);
+        config.setPort(port);
+        config.setPassword(RedisPassword.of(password));
+        return config;
     }
 }
